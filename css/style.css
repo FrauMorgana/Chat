@@ -1,0 +1,151 @@
+html {
+   box-sizing: border-box;
+   scroll-behavior: smooth;
+}
+
+:root {
+   --border: 1px solid black;
+   --entire: 100%;
+   --font1: 16px;
+   --font2: 24px;
+   --sent: #F6F6F6;
+   --read: #E5E5E5;
+   --min-space: 0.5rem;
+}
+
+body {
+   font-family: 'Roboto', sans-serif;
+   font-size: 16px;
+}
+
+a {
+   text-decoration: none;
+}
+
+.container {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   width: var(--entire);
+}
+
+.app-container {
+   width: 320px;
+   height: 530px;
+   background-color: white;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   padding: var(--min-space);
+   margin: 10% auto;
+   row-gap: var(--min-space);
+}
+
+.chat-container {
+   flex: 1;
+   border: var(--border);
+   padding: var(--min-space);
+   display: flex;
+   flex-direction: column-reverse;
+   row-gap: var(--min-space);
+   justify-content: space-between;
+}
+.message-item {
+   background-color: var(--read);
+   padding: var(--min-space);
+   width: fit-content;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   row-gap: 0.25rem;
+}
+.sent {
+   background-color: var(--sent);
+   align-self: flex-end;
+}
+.read {
+   background-color: var(--read);
+}
+.message-time {
+   font-size: 14px;
+   font-style: italic;
+   font-weight: 300;
+   align-self: flex-end;
+}
+
+.button{
+   border: var(--border);
+   font-family: inherit;
+   font-size: inherit;
+   color: black;
+   padding: 0.5rem;
+   transition: all 0.2s ease-out;
+}
+.button:hover{
+   background-color: black;
+   color: white;
+}
+
+.message-input {
+   flex: 1;
+   border: var(--border);
+   margin-right: 0.5rem;
+   padding-left: var(--min-space);
+   font-family: inherit;
+   font-size: inherit;
+}
+.message-input:focus{
+   outline: none;
+}
+
+
+
+
+
+.popup {
+   width: 100vw;
+   min-height: 100vh;
+   height: 1px;
+   position: fixed;
+   top: 0;
+   left: 0;
+   background-color: #000000a1;
+   padding: 30px;
+   overflow: auto;
+   z-index: 1;
+   opacity: 0;
+   visibility: hidden;
+}
+
+.popup-body-wrapper{
+   min-height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.popup-body {
+   width: 275px;
+   height: 320px;
+   background-color: white;
+   padding: 1rem;
+   display: flex;
+   flex-direction: column;
+   row-gap: 1rem;
+}
+.popup-header{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.close-button{
+   font-size: 24px;
+   opacity: 45%;
+   transform: rotate(45deg);
+}
+.popup-content {
+   height: 100%;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   row-gap: var(--min-space);
+}
