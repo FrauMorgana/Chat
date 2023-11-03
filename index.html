@@ -18,13 +18,18 @@
             <a href="" class="button">Выйти</a>
          </div>
          <div class="chat-container">
-            <div class="message-item sent read">
-               <p class="message-text"><span class="sender">Semder: </span>Lorem </p>
-               <p class="message-time">05:24</p>
-            </div>
+            
+               <!-- <div class="message-item sent read"> -->
+                  <template id="msgtplt">
+                     <p class="sender">Кто-то: </p>
+                     <p class="message-text"></p>
+                     <p class="message-time">05:24</p>
+                  </template>
+                  
+               <!-- </div> -->
          </div>
-         <form action="#" class="input-container container">
-            <input type="text" class="message-input" placeholder="сообщение...">
+         <form action="#" class="input-container container" id="messageinputform">
+            <input type="text" class="message-input" placeholder="сообщение..." maxlength="2000">
             <button class="button">-></button>
          </form>
       </div>
@@ -48,5 +53,8 @@
 			
 		</div>
 	</main>
+
+   <script type="module" src="js/main.js"></script>
+   <script type="module" src="js/popups.js"></script>
 </body>
 </html>
