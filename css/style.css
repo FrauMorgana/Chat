@@ -99,7 +99,7 @@ a {
 }
 
 
-
+/* ----------------------POPUPS---------------------- */
 
 
 .popup {
@@ -115,6 +115,15 @@ a {
    z-index: 1;
    opacity: 0;
    visibility: hidden;
+   transition: all 0.8s ease 0s;
+}
+.popup.opened{
+   opacity: 1;
+   visibility: visible;
+}
+.popup.opened .popup-body {
+   transform: translate(0px, 0px);
+   opacity: 1;
 }
 
 .popup-body-wrapper{
@@ -128,6 +137,11 @@ a {
    height: 320px;
    background-color: white;
    padding: 1rem;
+   transition: all 0.3s ease 0s;
+   opacity: 0;
+   transform: translate(0px, -100%);
+}
+.popup-content{
    display: flex;
    flex-direction: column;
    row-gap: 1rem;
@@ -142,7 +156,7 @@ a {
    opacity: 45%;
    transform: rotate(45deg);
 }
-.popup-content {
+.popup-options {
    height: 100%;
    overflow: hidden;
    display: flex;

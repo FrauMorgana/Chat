@@ -14,8 +14,8 @@
 	<main>
 		<div class="app-container">
          <div class="menu-container container">
-            <a href="" class="button">Настройки</a>
-            <a href="" class="button">Выйти</a>
+            <a href="" class="button" id="settingsButton">Настройки</a>
+            <a href="" class="button" id="loginButton">Вход</a>
          </div>
          <div class="chat-container">
             
@@ -34,25 +34,45 @@
          </form>
       </div>
 
-		<div class="popup">
-			<div class="popup-body-wrapper">
-				<div class="popup-body">
-               <div class="popup-header">
-                  <h2>Настройки</h2>
-                  <a href="" class="close-button">+</a>
+         <div class="popup">
+            <div class="popup-body-wrapper">
+               <div class="popup-body">
+                  <div class="popup-content">
+                     <div class="popup-header">
+                           <h2 class="inner-header">Настройки</h2>
+                           <a href="" class="close-button">+</a>
+                     </div>
+                     <div class="popup-options">
+                        
+                     </div>
+                  </div>
+                  </div>
                </div>
-					<div class="popup-content">
-						<h2>Имя в чате</h2>
-                  <form action="" class="container">
-                     <input type="text" class="message-input">
-                     <button class="button">-></button>
-                  </form>
-					</div>
-				</div>
-			</div>
-			
-		</div>
+            </div>
+         </div>
 	</main>
+
+   <template id="settings">
+      <h2>Имя в чате</h2>
+      <form action="" class="container">
+         <input type="text" class="message-input">
+         <button class="button">-></button>
+      </form>
+   </template>
+   <template id="login">
+      <h2>Почта:</h2>
+      <form action="" class="container">
+         <input type="email" class="message-input">
+         <button class="button">-></button>
+      </form>
+   </template>
+   <template id="confirmCode">
+      <h2>Почта:</h2>
+      <form action="" class="container">
+         <input type="email" class="message-input">
+         <button class="button">-></button>
+      </form>
+   </template>
 
    <script type="module" src="js/main.js"></script>
    <script type="module" src="js/popups.js"></script>
