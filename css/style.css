@@ -28,6 +28,10 @@ a {
    justify-content: space-between;
    width: var(--entire);
 }
+.popup-form{
+   flex-wrap: wrap;
+   row-gap: var(--min-space);
+}
 
 .app-container {
    width: 320px;
@@ -97,7 +101,17 @@ a {
 .message-input:focus{
    outline: none;
 }
-
+.popup-input {
+   width: var(--entire);
+   height: 2rem;
+   border: var(--border);
+   padding-left: var(--min-space);
+   font-family: inherit;
+   font-size: inherit;
+}
+.popup-input:focus {
+   outline: none;
+}
 
 /* ----------------------POPUPS---------------------- */
 

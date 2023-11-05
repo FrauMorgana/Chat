@@ -9,7 +9,7 @@ const ELEMENT = {
 const POPUP = {
    SETTINGS: 'settings',
    LOGIN: 'login',
-   CONFIRM: 'confirm',
+   CONFIRM: 'confirmCode',
 }
 
 export {ELEMENT, POPUP}

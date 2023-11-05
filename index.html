@@ -14,8 +14,8 @@
 	<main>
 		<div class="app-container">
          <div class="menu-container container">
-            <a href="" class="button" id="settingsButton">Настройки</a>
-            <a href="" class="button" id="loginButton">Вход</a>
+            <a href="#settings" class="button popup-link" id="settingsButton">Настройки</a>
+            <a href="#login" class="button popup-link" id="loginButton">Вход</a>
          </div>
          <div class="chat-container">
             
@@ -59,18 +59,25 @@
          <button class="button">-></button>
       </form>
    </template>
+
+
+
    <template id="login">
       <h2>Почта:</h2>
-      <form action="" class="container">
-         <input type="email" class="message-input">
-         <button class="button">-></button>
+      <form action="" class="container popup-form">
+         <input type="email" class="popup-input">
+         <button class="button">Получить код</button>
+         <a href="#confirmCode" class="button popup-link" id="confirmCodeButton">Ввести код</a>
       </form>
    </template>
+
+
+
    <template id="confirmCode">
-      <h2>Почта:</h2>
+      <h2>Код:</h2>
       <form action="" class="container">
-         <input type="email" class="message-input">
-         <button class="button">-></button>
+         <input type="text" class="popup-input">
+         <button class="button">Войти</button>
       </form>
    </template>
 
