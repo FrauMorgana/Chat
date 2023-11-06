@@ -13,8 +13,20 @@ if (popupLinks.length > 0) {
       });
    }
 }
+ELEMENT.POPUP.addEventListener('click', closureHandler);
+
+function closureHandler(e) {
+   if (e.target.closest('.close-button')) {
+      e.preventDefault();
+      closePopUp();
+   } else if (!e.target.closest('.popup-body') && e.target.closest('.popup')) {
+      closePopUp();
+   }
+}
 
 function showPopUp(template) {
+   closePopUp();
+
    ELEMENT.POPUP.classList.add('opened');
    const innerHeader = ELEMENT.POPUP.querySelector('.inner-header');
    const container = ELEMENT.POPUP.querySelector('.popup-options');
@@ -29,6 +41,7 @@ function showPopUp(template) {
          innerHeader.textContent = 'Авторизация';
          document.querySelector('.popup-content').style.rowGap = '4rem';
          const popupLink = ELEMENT.POPUP.querySelector('.popup-link');
+         
          popupLink.addEventListener('click', (e) => {
             e.preventDefault();
             const popupConfirm = document.getElementById(POPUP.CONFIRM);
@@ -38,5 +51,12 @@ function showPopUp(template) {
       case POPUP.CONFIRM:
          innerHeader.textContent = 'Подтверждение';
          break;
+   }
+}
+
+function closePopUp() {
+   if (ELEMENT.POPUP.classList.contains('opened')) {
+      ELEMENT.POPUP.classList.remove('opened')
+      ELEMENT.POPUP.querySelector('.popup-options').innerHTML = '';
    }
 }

@@ -52,7 +52,14 @@ a {
    display: flex;
    flex-direction: column-reverse;
    row-gap: var(--min-space);
-   overflow: hidden;
+   overflow: auto;
+   -ms-overflow-style: none;
+      /* IE and Edge */
+   scrollbar-width: none;
+      /* Firefox */
+}
+.chat-container::-webkit-scrollbar {
+   display: none;
 }
 .message-item {
    background-color: var(--read);
@@ -88,6 +95,10 @@ a {
 .button:hover{
    background-color: black;
    color: white;
+}
+#confirmCodeButton {
+   flex: 1;
+   margin-left: var(--min-space);
 }
 
 .message-input {
