@@ -1,4 +1,5 @@
 import { ELEMENT, POPUP } from "./data.js";
+import {loginRequestHandler} from "./main.js"
 
 const popupLinks = document.querySelectorAll('.popup-link');
 
@@ -32,22 +33,25 @@ function showPopUp(template) {
    const container = ELEMENT.POPUP.querySelector('.popup-options');
    const popupTemplate = template.content.cloneNode(true);
    container.append(popupTemplate);
-
    switch (template.id) {
       case POPUP.SETTINGS:
          innerHeader.textContent = 'Настройки';
          break;
+      
       case POPUP.LOGIN:
          innerHeader.textContent = 'Авторизация';
          document.querySelector('.popup-content').style.rowGap = '4rem';
          const popupLink = ELEMENT.POPUP.querySelector('.popup-link');
-         
          popupLink.addEventListener('click', (e) => {
             e.preventDefault();
             const popupConfirm = document.getElementById(POPUP.CONFIRM);
             showPopUp(popupConfirm);
-         })
+         });
+
+         const loginForm = document.getElementById('loginForm');
+         loginForm.addEventListener('submit', loginRequestHandler);
          break;
+      
       case POPUP.CONFIRM:
          innerHeader.textContent = 'Подтверждение';
          break;

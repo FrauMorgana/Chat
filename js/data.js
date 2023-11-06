@@ -7,6 +7,7 @@ const ELEMENT = {
    CLOSE_BUTTON: document.querySelector('.close-button'),
    LOGIN_FORM: document.getElementById('loginForm'),
    LOGIN_INPUT: document.getElementById('emailInput'),
+   LOGIN_BUTTON: document.getElementById('loginButton'),
 }
 
 const POPUP = {
