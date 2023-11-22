@@ -112,6 +112,10 @@ a {
 .message-input:focus{
    outline: none;
 }
+.message-input:disabled {
+   background-color: var(--read);
+}
+
 .popup-input {
    width: var(--entire);
    height: 2rem;
@@ -122,6 +126,11 @@ a {
 }
 .popup-input:focus {
    outline: none;
+}
+
+.hidden {
+   opacity: 0;
+   visibility: hidden;
 }
 
 /* ----------------------POPUPS---------------------- */
