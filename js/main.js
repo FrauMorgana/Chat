@@ -1,23 +1,11 @@
 import { ELEMENT } from "./data.js";
 
 ELEMENT.MESSAGE_FORM.addEventListener('submit', messageHandler);
-ELEMENT.LOGIN_BUTTON.addEventListener('click', loginPopUpHandler);
 
 function messageHandler(e) {
    e.preventDefault();
    sendMessage();
    ELEMENT.MESSAGE_INPUT.value = '';
-}
-
-function loginPopUpHandler() {
-   const loginForm = document.getElementById('loginForm');
-   //loginForm.addEventListener('submit', loginRequestHandler);
-   console.log(loginForm);
-}
-
-function loginRequestHandler(e) {
-   e.preventDefault();
-   emailRequest();
 }
 
 function sendMessage() {
@@ -35,19 +23,6 @@ function sendMessage() {
       messageText.textContent = input;
       ELEMENT.CHAT_CONTAINER.prepend(messageItem);
    }
-}
-
-async function emailRequest() {
-   const email = { email: document.getElementById('emailInput').value } ;
-   const url = 'https://edu.strada.one/api/user';
-   const request = await fetch(url, {
-      method: 'POST',
-      headers: {
-         'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify(email),      
-   })
-   console.log(request.json());
 }
 
 export { loginRequestHandler };

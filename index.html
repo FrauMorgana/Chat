@@ -1,85 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/normalize.css">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/normalize.css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
-	<title>Chat</title>
+   <title>Chat</title>
 </head>
+
 <body>
-	<main>
-		<div class="app-container">
-         <div class="menu-container container">
-            <a href="#settings" class="button popup-link" id="settingsButton">Настройки</a>
-            <a href="#login" class="button popup-link" id="loginButton">Вход</a>
+   <main>
+      <div class="app-container">
+         <div class="container">
+            <a href="#settings" class="button popup-link">Настройки</a>
+            <a href="#login" class="button popup-link">Вход</a>
          </div>
          <div class="chat-container">
-            
-               <!-- <div class="message-item sent read"> -->
-                  <template id="msgtplt">
-                     <p class="sender">Кто-то: </p>
-                     <p class="message-text"></p>
-                     <p class="message-time">05:24</p>
-                  </template>
-                  
-               <!-- </div> -->
+
+            <!-- <div class="message-item sent read"> -->
+            <template id="msgtplt">
+               <p class="sender">Кто-то: </p>
+               <p class="message-text"></p>
+               <p class="message-time">05:24</p>
+            </template>
+
+            <!-- </div> -->
          </div>
-         <form action="#" class="input-container container" id="messageinputform">
-            <input type="text" class="message-input" id="messageInput" placeholder="сообщение..." maxlength="2000">
+         <form action="#" class="container" id="messageinputform">
+            <input type="text" class="message-input" id="messageInput" placeholder="сообщение..." maxlength="2000"
+               autocomplete="off">
             <button class="button">-></button>
          </form>
       </div>
 
-         <div class="popup">
-            <div class="popup-body-wrapper">
-               <div class="popup-body">
-                  <div class="popup-content">
-                     <div class="popup-header">
-                           <h2 class="inner-header">Настройки</h2>
-                           <a href="" class="close-button">+</a>
-                     </div>
-                     <div class="popup-options">
-                        
-                     </div>
+      <div class="popup" id="settings">
+         <div class="popup-body-wrapper">
+            <div class="popup-body">
+               <div class="popup-content">
+                  <div class="popup-header">
+                     <h2>Настройки</h2>
+                     <a href="" class="close-button">+</a>
                   </div>
+                  <div class="popup-options">
+                     <h2>Имя в чате</h2>
+                     <form action="" class="container">
+                        <input type="text" class="message-input">
+                        <button class="button">-></button>
+                     </form>
                   </div>
                </div>
             </div>
          </div>
-	</main>
+      </div>
 
-   <template id="settings">
-      <h2>Имя в чате</h2>
-      <form action="" class="container">
-         <input type="text" class="message-input">
-         <button class="button">-></button>
-      </form>
-   </template>
+      <div class="popup" id="login">
+         <div class="popup-body-wrapper">
+            <div class="popup-body">
+               <div class="popup-content">
+                  <div class="popup-header">
+                     <h2>Авторизация</h2>
+                     <a href="" class="close-button">+</a>
+                  </div>
+                  <div class="popup-options">
+                     <h2>Почта:</h2>
+                     <form action="" class="container popup-form" id="loginForm">
+                        <input type="email" class="popup-input" id="emailInput">
+                        <button class="button">Получить код</button>
+                        <a href="#confirmCode" class="button popup-link" id="confirmCodeButton">Ввести код</a>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
 
-
-
-   <template id="login">
-      <h2>Почта:</h2>
-      <form action="" class="container popup-form" id="loginForm">
-         <input type="email" class="popup-input" id="emailInput">
-         <button class="button">Получить код</button>
-         <a href="#confirmCode" class="button popup-link" id="confirmCodeButton">Ввести код</a>
-      </form>
-   </template>
-
-
-
-   <template id="confirmCode">
-      <h2>Код:</h2>
-      <form action="" class="container popup-form">
-         <input type="text" class="popup-input">
-         <button class="button">Войти</button>
-      </form>
-   </template>
+      <div class="popup" id="confirmCode">
+         <div class="popup-body-wrapper">
+            <div class="popup-body">
+               <div class="popup-content">
+                  <div class="popup-header">
+                     <h2>Подтверждение</h2>
+                     <a href="" class="close-button">+</a>
+                  </div>
+                  <div class="popup-options">
+                     <h2>Код:</h2>
+                     <form action="" class="container popup-form" id="authorizationForm">
+                        <input type="text" class="popup-input" id="authorizationCode">
+                        <button class="button">Войти</button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </main>
 
    <script type="module" src="js/main.js"></script>
    <script type="module" src="js/popups.js"></script>

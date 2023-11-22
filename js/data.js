@@ -5,9 +5,6 @@ const ELEMENT = {
    CHAT_CONTAINER: document.querySelector('.chat-container'),
    POPUP: document.querySelector('.popup'),
    CLOSE_BUTTON: document.querySelector('.close-button'),
-   LOGIN_FORM: document.getElementById('loginForm'),
-   LOGIN_INPUT: document.getElementById('emailInput'),
-   LOGIN_BUTTON: document.getElementById('loginButton'),
 }
 
 const POPUP = {
