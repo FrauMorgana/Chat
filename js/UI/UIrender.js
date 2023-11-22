@@ -15,6 +15,7 @@ function UiRender() {
 function Uiunauthorized() {
    settingsBtn.classList.add('hidden');
    loginBtn.textContent = "Вход";
+   loginBtn.classList.remove('logoutBtn');
    messageInput.setAttribute('disabled', '');
    if (messageInput.hasAttribute('placeholder')) {
       messageInput.removeAttribute('placeholder');
@@ -25,6 +26,7 @@ function Uiunauthorized() {
 function UiAuthorized() {
    settingsBtn.classList.remove('hidden');
    loginBtn.textContent = "Выход";
+   loginBtn.classList.add('logoutBtn');
    if (messageInput.hasAttribute('disabled') && !messageInput.hasAttribute('placeholder')) {
       messageInput.removeAttribute('disabled');
       messageInput.setAttribute('placeholder', 'сообщение...')
