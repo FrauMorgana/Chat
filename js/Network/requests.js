@@ -1,18 +1,17 @@
 import { ELEMENT } from "../data.js";
+import {URL_PATH, REQUEST_TYPE, token, chatStory} from "./netData.js"
+import Cookies from "js-cookie";
 
-const URL_PATH = {
-   USER: "/user",
-   USER_ME: "/user/me",
-   MESSAGES: "/messages/",
-};
-const REQUEST_TYPE = {
-   LOGIN: 'login',
-   CHANGE_NAME: 'new-name',
-}
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbGVvbl9rdWJlbEB1a3IubmV0IiwiaWF0IjoxNzAxMTk1NDQ4LCJleHAiOjE3MDQ3OTE4NDh9.fxZWj8ScwwtsE4rRBWvOhtxwCtBr3Z6nKSmml16EXcw";
-
+//document.addEventListener('DOMContentLoaded', storyRequest);
 ELEMENT.SETTINGS_FORM.addEventListener('submit', updateNameRequest);
 ELEMENT.LOGIN_FORM.addEventListener("submit", tokenRequest);
+ELEMENT.AUTHORIZ_FORM.addEventListener('submit', saveToken);
+
+function saveToken(e) {
+   e.preventDefault();
+   const token = ELEMENT.TOKEN_INPUT.value;
+   if (token) { Cookies.set("token", token); };
+}
 
 function tokenRequest(e) {
    e.preventDefault();
@@ -26,6 +25,13 @@ function updateNameRequest(e) {
    request(URL_PATH.USER, 'PATCH', true, REQUEST_TYPE.CHANGE_NAME, name);
    request(URL_PATH.USER_ME, 'GET', true);
 };
+
+async function storyRequest() {
+   const story = await request(URL_PATH.MESSAGES, 'GET', true);
+   return story;
+   console.log(chatStory); 
+   console.log(Array.isArray(chatStory.messages)); 
+}
 
 async function request(
    path,
@@ -54,7 +60,7 @@ async function request(
          break;
    }
    const response = await fetch(url, options);
-   console.log(response.json());
+   return response.json();
 }
 
 async function testRequest() {
@@ -65,3 +71,5 @@ async function testRequest() {
    });
    console.log(response.json());
 };
+
+export {storyRequest}

@@ -61,6 +61,19 @@ a {
 .chat-container::-webkit-scrollbar {
    display: none;
 }
+.story-container {
+   display: flex;
+   flex-direction: column-reverse;
+   row-gap: var(--min-space);
+   overflow: auto;
+   -ms-overflow-style: none;
+      /* IE and Edge */
+   scrollbar-width: none;
+      /* Firefox */
+}
+.story-container::-webkit-scrollbar {
+   display: none;
+}
 .message-item {
    background-color: var(--read);
    padding: var(--min-space);
@@ -120,7 +133,7 @@ a {
    width: var(--entire);
    height: 2rem;
    border: var(--border);
-   padding-left: var(--min-space);
+   padding: 0 var(--min-space);
    font-family: inherit;
    font-size: inherit;
 }

@@ -13,10 +13,4 @@ const ELEMENT = {
    TOKEN_INPUT: document.getElementById("authorizationCode"),
 };
 
-const POPUP = {
-   SETTINGS: 'settings',
-   LOGIN: 'login',
-   CONFIRM: 'confirmCode',
-}
-
-export { ELEMENT, POPUP }
+export { ELEMENT }

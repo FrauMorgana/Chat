@@ -1,4 +1,5 @@
 import { ELEMENT } from "../data.js";
+import { storyRequest } from "../Network/requests.js";
 
 let user = {
    state: 1,
@@ -9,7 +10,8 @@ function UiRender() {
       Uiunauthorized();
    } else {
       UiAuthorized();
-   }
+   };
+   storyRender();
 }
 
 function Uiunauthorized() {
@@ -34,27 +36,39 @@ function UiAuthorized() {
    ELEMENT.MESSAGE_FORM.addEventListener('submit', messageHandler);
 }
 
+async function storyRender() {
+   const story = await storyRequest();
+   const storyContainer = document.createElement("div");
+   storyContainer.classList.add("story-container");
+   story.messages.forEach((element) => {
+      const message = createMessage(element.text);
+      storyContainer.append(message);
+   });
+   ELEMENT.CHAT_CONTAINER.prepend(storyContainer);
+   console.log(story);
+}
+
 function messageHandler(e) {
    e.preventDefault();
-   sendMessage();
+   let message = createMessage(ELEMENT.MESSAGE_INPUT.value, ['sent']);
+   ELEMENT.CHAT_CONTAINER.prepend(message);
    ELEMENT.MESSAGE_INPUT.value = '';
 }
 
-function sendMessage() {
+function createMessage(text, classes = []) {
    const message = msgtplt.content.cloneNode(true);
    const messageItem = document.createElement('div');
-   messageItem.classList.add("message-item", 'sent');
+   messageItem.classList.add("message-item", ...classes);
    messageItem.append(message);
 
    const messageText = messageItem.querySelector('.message-text');
    const messageSender = messageText.querySelector('.sender');
    const messageTime = messageItem.querySelector('.message-time');
 
-   const input = ELEMENT.MESSAGE_INPUT.value;
-   if ((input.trim()).length > 0) {
-      messageText.textContent = input;
-      ELEMENT.CHAT_CONTAINER.prepend(messageItem);
+   if ((text.trim()).length > 0) {
+      messageText.textContent = text;
    }
+   return messageItem;
 }
 
-export {UiRender}
+export { UiRender }
