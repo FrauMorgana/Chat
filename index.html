@@ -47,8 +47,8 @@
                   </div>
                   <div class="popup-options">
                      <h2>Имя в чате</h2>
-                     <form action="" class="container">
-                        <input type="text" class="message-input">
+                     <form class="container" id="settingsForm">
+                        <input type="text" class="message-input" id="nameInput">
                         <button class="button">-></button>
                      </form>
                   </div>
@@ -67,7 +67,7 @@
                   </div>
                   <div class="popup-options">
                      <h2>Почта:</h2>
-                     <form action="" class="container popup-form" id="loginForm">
+                     <form class="container popup-form" id="loginForm">
                         <input type="email" class="popup-input" id="emailInput">
                         <button class="button">Получить код</button>
                         <a href="#confirmCode" class="button popup-link" id="confirmCodeButton">Ввести код</a>
@@ -102,5 +102,6 @@
    <script type="module" src="js/main.js"></script>
    <script type="module" src="js/UI/popups.js"></script>
    <script type="module" src="js/UI/UIrender.js"></script>
+   <script type="module" src="js/Network/requests.js"></script>
 </body>
 </html>

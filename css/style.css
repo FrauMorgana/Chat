@@ -41,7 +41,7 @@ a {
    flex-direction: column;
    justify-content: space-between;
    padding: var(--min-space);
-   margin: 10% auto;
+   margin: 100px auto;
    row-gap: var(--min-space);
 }
 
