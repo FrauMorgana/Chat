@@ -27,7 +27,15 @@ a {
    flex-direction: row;
    justify-content: space-between;
    width: var(--entire);
+   position: relative;
 }
+
+#logoutBtn {
+   z-index: 1;
+   position: absolute;
+   right: 0;
+}
+
 .popup-form{
    flex-wrap: wrap;
    row-gap: var(--min-space);
@@ -53,6 +61,7 @@ a {
    flex-direction: column-reverse;
    row-gap: var(--min-space);
    overflow: auto;
+   overflow-anchor: none;
    -ms-overflow-style: none;
       /* IE and Edge */
    scrollbar-width: none;
@@ -64,8 +73,9 @@ a {
 .story-container {
    display: flex;
    flex-direction: column-reverse;
+   overflow-anchor: none;
    row-gap: var(--min-space);
-   overflow: auto;
+   /* overflow: auto; */
    -ms-overflow-style: none;
       /* IE and Edge */
    scrollbar-width: none;

@@ -16,8 +16,11 @@
    <main>
       <div class="app-container">
          <div class="container">
-            <a href="#settings" class="button popup-link" id="settingsBtn">Настройки</a>
-            <a href="#login" class="button popup-link" id="loginBtn">Вход</a>
+            <a href="#settings" class="button popup-link hidden" id="settingsBtn">Настройки</a>
+            
+               <a href="#login" class="button popup-link hidden" id="loginBtn">Вход</a>
+               <a href="#" class="button hidden" id="logoutBtn">Выход</a>
+            
          </div>
          <div class="chat-container">
 
@@ -43,7 +46,7 @@
                <div class="popup-content">
                   <div class="popup-header">
                      <h2>Настройки</h2>
-                     <a href="" class="close-button">+</a>
+                     <a href="#" class="close-button">+</a>
                   </div>
                   <div class="popup-options">
                      <h2>Имя в чате</h2>
@@ -89,7 +92,7 @@
                   <div class="popup-options">
                      <h2>Код:</h2>
                      <form action="" class="container popup-form" id="authorizationForm">
-                        <input type="text" class="popup-input" id="authorizationCode">
+                        <input type="text" autocomplete="off" class="popup-input" id="authorizationCode">
                         <button class="button">Войти</button>
                      </form>
                   </div>
@@ -100,7 +103,5 @@
    </main>
 
    <script type="module" src="js/main.js"></script>
-   <script type="module" src="js/UI/popups.js"></script>
-   <!-- <script type="module" src="js/Network/requests.js"></script> -->
 </body>
 </html>

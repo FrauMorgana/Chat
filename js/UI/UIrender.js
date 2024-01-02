@@ -1,74 +1,109 @@
 import { ELEMENT } from "../data.js";
-import { storyRequest } from "../Network/requests.js";
+import { getStoryFragment } from "../Network/network.js";
+import { format } from "date-fns";
+import Cookies from "js-cookie";
 
-let user = {
-   state: 1,
-}
-
-function UiRender() {
-   if (user.state == 0) {
-      Uiunauthorized();
-   } else {
-      UiAuthorized();
-   };
-   storyRender();
+function UiRender(user) {
+   (user.state == 0) ? Uiunauthorized() : UiAuthorized();
 }
 
 function Uiunauthorized() {
-   settingsBtn.classList.add('hidden');
-   loginBtn.textContent = "Вход";
-   loginBtn.classList.remove('logoutBtn');
+   showElements(loginBtn);
+   hideElements(settingsBtn, logoutBtn);
    messageInput.setAttribute('disabled', '');
+   ELEMENT.MESSAGE_BUTTON.setAttribute("disabled", "");
    if (messageInput.hasAttribute('placeholder')) {
       messageInput.removeAttribute('placeholder');
    };
-   ELEMENT.MESSAGE_FORM.removeEventListener('submit', messageHandler);
 }
 
 function UiAuthorized() {
-   settingsBtn.classList.remove('hidden');
-   loginBtn.textContent = "Выход";
-   loginBtn.classList.add('logoutBtn');
+   hideElements(loginBtn);
+   showElements(settingsBtn, logoutBtn);
    if (messageInput.hasAttribute('disabled') && !messageInput.hasAttribute('placeholder')) {
       messageInput.removeAttribute('disabled');
-      messageInput.setAttribute('placeholder', 'сообщение...')
+      messageInput.setAttribute('placeholder', 'сообщение...');
+      ELEMENT.MESSAGE_BUTTON.removeAttribute("disabled", "");
    };
-   ELEMENT.MESSAGE_FORM.addEventListener('submit', messageHandler);
+   storyRender();
+   
 }
 
-async function storyRender() {
-   const story = await storyRequest();
+function showElements(...elems) {
+   [...elems].forEach(elem => {
+      if (elem.classList.contains('hidden')) {
+         elem.classList.remove('hidden')
+      }
+   })
+}
+
+function hideElements(...elems) {
+   [...elems].forEach(elem => {
+      if (!elem.classList.contains('hidden')) {
+         elem.classList.add('hidden')
+      }
+   })
+}
+
+function storyRender() {
+   const story = getStoryFragment();
+   if (!story) {
+      return;
+   }
    const storyContainer = document.createElement("div");
    storyContainer.classList.add("story-container");
-   story.messages.forEach((element) => {
-      const message = createMessage(element.text);
+   story.forEach((element) => {
+      let name = element.user.name;
+      const email = element.user.email;
+      if (name == element.user.email) {
+         name = "Anonymous";
+      }
+      const message = createMessage(name, element.text, element.createdAt);
+      if (email == Cookies.get('email')) {
+         message.classList.add('sent')
+      }
       storyContainer.append(message);
    });
-   ELEMENT.CHAT_CONTAINER.prepend(storyContainer);
-   console.log(story);
+   ELEMENT.CHAT_CONTAINER.append(storyContainer);
 }
 
-function messageHandler(e) {
-   e.preventDefault();
-   let message = createMessage(ELEMENT.MESSAGE_INPUT.value, ['sent']);
-   ELEMENT.CHAT_CONTAINER.prepend(message);
-   ELEMENT.MESSAGE_INPUT.value = '';
+function isAllScrolled(elem) {
+   const scrollTop = elem.scrollTop;
+   const difference = elem.scrollHeight - elem.clientHeight;
+   const result = (difference - (-scrollTop)) <= 40;
+   return result;
 }
 
-function createMessage(text, classes = []) {
+function renderMessage(event) {
+   const data = JSON.parse(event.data);
+   console.log(data);
+   const message = createMessage(data.user.name, data.text, data.createdAt);
+   if (data.user.email == Cookies.get('email')) {
+      message.classList.add('sent');
+   }
+   if (message) {
+      ELEMENT.CHAT_CONTAINER.prepend(message);
+   }
+}
+
+function createMessage(sender, text, date = new Date(), classes = []) {
    const message = msgtplt.content.cloneNode(true);
    const messageItem = document.createElement('div');
    messageItem.classList.add("message-item", ...classes);
    messageItem.append(message);
 
    const messageText = messageItem.querySelector('.message-text');
-   const messageSender = messageText.querySelector('.sender');
+   const messageSender = messageItem.querySelector('.sender');
    const messageTime = messageItem.querySelector('.message-time');
 
+   const time = format(date, 'HH:mm');
+   
    if ((text.trim()).length > 0) {
       messageText.textContent = text;
+      messageSender.textContent = sender;
+      messageTime.textContent = time;
+      return messageItem;
    }
-   return messageItem;
 }
 
-export { UiRender }
+export { UiRender, renderMessage, isAllScrolled, storyRender }

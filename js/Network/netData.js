@@ -1,9 +1,13 @@
-import Cookies from "js-cookie";
+const PROTOCOL = {
+   WSS: 'wss:',
+   HTTPS: 'https:',
+}
 
 const URL_PATH = {
-   USER: "/user",
-   USER_ME: "/user/me",
-   MESSAGES: "/messages/",
+   USER: "/api/user",
+   USER_ME: "/api/user/me",
+   MESSAGES: "/api/messages/",
+   WEBSOCKETS: '/websockets',
 };
 
 const REQUEST_TYPE = {
@@ -11,8 +15,10 @@ const REQUEST_TYPE = {
    CHANGE_NAME: "new-name",
 };
 
-const token = Cookies.get("token") || "";
+const METHOD = {
+   GET: 'GET',
+   POST: 'POST',
+   PATCH: 'PATCH',
+}
 
-let chatStory = {};
-
-export { URL_PATH, REQUEST_TYPE, token, chatStory };
+export { PROTOCOL, URL_PATH, REQUEST_TYPE, METHOD };

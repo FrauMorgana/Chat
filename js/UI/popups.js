@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', popupsHandler);
 
 function popupsHandler() {
@@ -27,7 +26,6 @@ function popupsListeners(action, callback, popupLinks = document.querySelectorAl
 }
 
 function popupsClosure(e) {
-   //e.preventDefault();
    if (e.target.closest('.close-button') || (e.target.closest('.popup') && !e.target.closest('.popup-body'))) {
       closePopup();
    }
@@ -50,3 +48,5 @@ function closePopup() {
       currentPopup.classList.remove('opened');
    }
 }
+
+export {closePopup}
